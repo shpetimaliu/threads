@@ -4,7 +4,7 @@ import React from "react";
 const Feed = () => {
   return (
     <div>
-      <p>Feed</p>
+      <p className="text-3xl text-red-500 font-bold underline">Feed</p>
     </div>
   );
 };
