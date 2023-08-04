@@ -7,6 +7,7 @@ import {
   MessageCircle,
   Send,
 } from "react-feather";
+import { Thread } from "../components/Thread";
 
 const Feed = () => {
   return (
