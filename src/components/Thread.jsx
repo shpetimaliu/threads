@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   MoreHorizontal,
   Heart,
@@ -9,6 +9,14 @@ import {
 } from "react-feather";
 
 export const Thread = ({ thread }) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
+  if (loading) return;
+
   return (
     <div className="flex p-4">
       <img
@@ -26,7 +34,7 @@ export const Thread = ({ thread }) => {
         </div>
         {/* Body */}
         <div className="py-2">
-          <span>Shpetim Aliu trying to create a clone of threads</span>
+          <span>{thread.body}</span>
         </div>
         <div className="flex gap-2 py-2">
           <Heart size={22} />

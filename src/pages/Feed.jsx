@@ -4,7 +4,7 @@ import { Thread } from "../components/Thread";
 import { database, DB_ID, COLLECTION_ID } from "../../appWriteConfig";
 
 const Feed = () => {
-  const [threads, setThreads] = useState();
+  const [threads, setThreads] = useState([]);
 
   useEffect(() => {
     getThreads();
@@ -13,14 +13,15 @@ const Feed = () => {
   const getThreads = async () => {
     const response = await database.listDocuments(DB_ID, COLLECTION_ID);
     console.log("response:", response);
+    setThreads(response.documents);
+    console.log(response.documents);
   };
 
   return (
     <div className="container mx-auto max-w-[600px]">
-      <Thread />
-      <Thread />
-      <Thread />
-      <Thread />
+      {threads.map((thread) => (
+        <Thread key={thread.$id} thread={thread} />
+      ))}
     </div>
   );
 };
