@@ -1,0 +1,21 @@
+{
+    "projectId": "64ce7d0c3faadce435e9",
+    "projectName": "Threads-Clone",
+    "functions": [
+        {
+            "$id": "64ced7442bdd27af1d2b",
+            "name": "getUser",
+            "runtime": "node-16.0",
+            "path": "functions/getUser",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}

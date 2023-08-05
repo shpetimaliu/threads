@@ -10,6 +10,7 @@ import {
 
 export const Thread = ({ thread }) => {
   const [loading, setLoading] = useState(true);
+  const [owner, setOwner] = useState(null);
 
   useEffect(() => {
     setLoading(false);
@@ -24,9 +25,9 @@ export const Thread = ({ thread }) => {
         className="w-14 h-14 rounded-full object-cover"
       />
       {/* Header of feed */}
-      <div className="w-full px-2 py-4 border-b border-[rgba(97,97,97,1)]">
+      <div className="w-full px-2 pb-4 border-b border-[rgba(97,97,97,1)]">
         <div className="flex justify-between gap-2">
-          <strong>Shpetim Aliu</strong>
+          <strong>{thread.owner_id}</strong>
           <div className="flex justify-between gap-2">
             <p className="text-[rgba(97,97,97,1)]">4hrs ago</p>
             <MoreHorizontal />
