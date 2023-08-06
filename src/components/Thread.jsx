@@ -1,4 +1,5 @@
 // eslint-disable-next-line no-unused-vars
+import { Functions } from "appwrite";
 import React, { useState, useEffect } from "react";
 import {
   MoreHorizontal,
@@ -7,14 +8,21 @@ import {
   MessageCircle,
   Send,
 } from "react-feather";
+import { functions } from "../../appWriteConfig";
 
 export const Thread = ({ thread }) => {
   const [loading, setLoading] = useState(true);
   const [owner, setOwner] = useState(null);
 
   useEffect(() => {
-    setLoading(false);
+    getUserInformation();
   }, []);
+
+  const getUserInformation = async () => {
+    const response = await functions.createExecution("64ced7442bdd27af1d2b");
+    console.log("Raporti:", response);
+    setLoading(false);
+  };
 
   if (loading) return;
 

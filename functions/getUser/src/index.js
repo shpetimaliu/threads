@@ -17,14 +17,7 @@ module.exports = async function (req, res) {
   const client = new sdk.Client();
 
   // You can remove services you don't use
-  const account = new sdk.Account(client);
-  const avatars = new sdk.Avatars(client);
-  const database = new sdk.Databases(client);
-  const functions = new sdk.Functions(client);
-  const health = new sdk.Health(client);
-  const locale = new sdk.Locale(client);
-  const storage = new sdk.Storage(client);
-  const teams = new sdk.Teams(client);
+
   const users = new sdk.Users(client);
 
   if (
@@ -42,7 +35,18 @@ module.exports = async function (req, res) {
       .setSelfSigned(true);
   }
 
-  res.json({
-    areDevelopersAwesome: "Qkemi prej Shpetimittt",
-  });
+  const payload = JSON.parse(req.payload);
+  console.log("payload:", payload);
+  const response = await users.get(payload["owner_id"]);
+
+  const userData = {
+    $id: response.$id,
+    name: response.name,
+    profile_pic: response["prefs"]["profile_pic"],
+    username: response["prefs"]["username"],
+  };
+
+  console.log("response:", response);
+
+  res.json(userData);
 };
