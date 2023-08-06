@@ -19,8 +19,16 @@ export const Thread = ({ thread }) => {
   }, []);
 
   const getUserInformation = async () => {
-    const response = await functions.createExecution("64ced7442bdd27af1d2b");
-    console.log("Raporti:", response);
+    const payload = {
+      owner_id: thread.owner_id,
+    };
+    const response = await functions.createExecution(
+      "64ced7442bdd27af1d2b",
+      JSON.stringify(payload)
+    );
+    const userData = JSON.parse(response.response);
+    console.log("Raporti:", userData);
+    setOwner(userData);
     setLoading(false);
   };
 
@@ -29,13 +37,13 @@ export const Thread = ({ thread }) => {
   return (
     <div className="flex p-4">
       <img
-        src="https://pbs.twimg.com/profile_images/1391922476167405575/gWl0pM1V_400x400.jpg"
+        src={owner.profile_pic}
         className="w-14 h-14 rounded-full object-cover"
       />
       {/* Header of feed */}
       <div className="w-full px-2 pb-4 border-b border-[rgba(97,97,97,1)]">
         <div className="flex justify-between gap-2">
-          <strong>{thread.owner_id}</strong>
+          <strong>{owner.name}</strong>
           <div className="flex justify-between gap-2">
             <p className="text-[rgba(97,97,97,1)]">4hrs ago</p>
             <MoreHorizontal />
