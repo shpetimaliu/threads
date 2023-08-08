@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import { Functions } from "appwrite";
 import React, { useState, useEffect } from "react";
+import { Functions } from "appwrite";
 import {
   MoreHorizontal,
   Heart,
@@ -9,6 +9,10 @@ import {
   Send,
 } from "react-feather";
 import { functions } from "../../appWriteConfig";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
+import ReactTimeAgo from "react-time-ago";
+TimeAgo.addDefaultLocale(en);
 
 export const Thread = ({ thread }) => {
   const [loading, setLoading] = useState(true);
@@ -45,7 +49,9 @@ export const Thread = ({ thread }) => {
         <div className="flex justify-between gap-2">
           <strong>{owner.name}</strong>
           <div className="flex justify-between gap-2">
-            <p className="text-[rgba(97,97,97,1)]">4hrs ago</p>
+            <p className="text-[rgba(97,97,97,1)]">
+              <ReactTimeAgo date={thread.$createdAt} locale="en-US" />
+            </p>
             <MoreHorizontal />
           </div>
         </div>
