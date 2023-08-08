@@ -31,7 +31,7 @@ export const Thread = ({ thread }) => {
       JSON.stringify(payload)
     );
     const userData = JSON.parse(response.response);
-    console.log("Raporti:", userData);
+    // console.log("Raporti:", userData);
     setOwner(userData);
     setLoading(false);
   };

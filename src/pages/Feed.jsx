@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Thread } from "../components/Thread";
 import { Image } from "react-feather";
 import { database, DB_ID, COLLECTION_ID } from "../../appWriteConfig";
-import { Query } from "appwrite";
+import { Query, ID } from "appwrite";
 
 const Feed = () => {
   const [threads, setThreads] = useState([]);
@@ -18,15 +18,33 @@ const Feed = () => {
     const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
       Query.orderDesc("$createdAt"),
     ]);
-    console.log("response:", response);
     setThreads(response.documents);
-    console.log(response.documents);
+  };
+
+  const handleThreadSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      owner_id: "64ce80a727511035504e",
+      body: body,
+      image: null,
+    };
+    const response = await database.createDocument(
+      DB_ID,
+      COLLECTION_ID,
+      ID.unique(),
+      payload
+    );
+
+    console.log("RESPONSE @2:", response);
+    setThreads((prevState) => [response, ...prevState]);
+    setBody("");
   };
 
   return (
     <div className="container mx-auto max-w-[600px]">
       <div className="p-4">
-        <form>
+        <form onSubmit={handleThreadSubmit}>
           <textarea
             className="rounded-lg p-4 w-full bg-[rgba(29,29,29,1)]"
             required
