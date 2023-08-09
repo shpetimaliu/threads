@@ -9,6 +9,7 @@ const Feed = () => {
   const [threads, setThreads] = useState([]);
 
   const [body, setBody] = useState("");
+  const [threadImg, setThreadImg] = useState(null);
 
   useEffect(() => {
     getThreads();
@@ -27,7 +28,7 @@ const Feed = () => {
     const payload = {
       owner_id: "64ce80a727511035504e",
       body: body,
-      image: null,
+      image: threadImg,
     };
     const response = await database.createDocument(
       DB_ID,
