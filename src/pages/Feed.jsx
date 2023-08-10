@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Thread } from "../components/Thread";
 import { Image } from "react-feather";
 import { database, DB_ID, COLLECTION_ID } from "../../appWriteConfig";
@@ -10,6 +10,8 @@ const Feed = () => {
 
   const [body, setBody] = useState("");
   const [threadImg, setThreadImg] = useState(null);
+
+  const fileRef = useRef(null);
 
   useEffect(() => {
     getThreads();
@@ -42,6 +44,19 @@ const Feed = () => {
     setBody("");
   };
 
+  const handleClick = async (e) => {
+    fileRef.current.click();
+  };
+
+  const handleFileChange = async (e) => {
+    const fileObject = e.target.files && e.target.files[0];
+    console.log(fileObject);
+
+    if (!fileObject) {
+      return;
+    }
+  };
+
   return (
     <div className="container mx-auto max-w-[600px]">
       <div className="p-4">
@@ -56,10 +71,25 @@ const Feed = () => {
               setBody(e.target.value);
             }}
           ></textarea>
+
+          {/* Icon */}
+          <input
+            style={{ display: "none" }}
+            type="file"
+            ref={fileRef}
+            onChange={handleFileChange}
+          />
+
           <div className="flex justify-between items-center border-y py-2 border-[rgba(49,49,49,1)]">
-            <Image size={24} />
+            <div className="icon-container group">
+              <Image
+                onClick={handleClick}
+                className="cursor-pointer group-hover:bg-[rgba(49,49,49,1)] rounded-full p-2"
+                size={40}
+              />
+            </div>
             <input
-              className="bg-white text-black py-2 text-sm px-4 border border-black rounded"
+              className="bg-white cursor-pointer text-black py-2 text-sm px-4 border border-black rounded"
               type="submit"
               value="Post"
             />
