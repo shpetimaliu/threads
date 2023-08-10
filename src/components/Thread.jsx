@@ -42,6 +42,8 @@ export const Thread = ({ thread, setThreads }) => {
     console.log("Thread was deleted");
   };
 
+  const toggleLike = async () => {};
+
   if (loading) return;
 
   return (
