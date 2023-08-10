@@ -1,4 +1,4 @@
-import { Client, Databases, Functions } from "appwrite";
+import { Client, Databases, Functions, Storage } from "appwrite";
 
 const client = new Client();
 
@@ -10,6 +10,7 @@ export const BUCKET_IMAGE_ID = import.meta.env.VITE_BUCKETS_IMAGE_ID;
 
 client.setEndpoint(VITE_ENDPOINT).setProject(PROJECT_ID);
 
+export const storage = new Storage(client);
 export const database = new Databases(client);
 export const functions = new Functions(client);
 export default client;

@@ -2,7 +2,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Thread } from "../components/Thread";
 import { Image } from "react-feather";
-import { database, DB_ID, COLLECTION_ID } from "../../appWriteConfig";
+import client, {
+  database,
+  DB_ID,
+  COLLECTION_ID,
+  BUCKET_IMAGE_ID,
+  storage,
+} from "../../appWriteConfig";
 import { Query, ID } from "appwrite";
 
 const Feed = () => {
@@ -55,6 +61,13 @@ const Feed = () => {
     if (!fileObject) {
       return;
     }
+
+    const response = await storage.createFile(
+      BUCKET_IMAGE_ID,
+      ID.unique(),
+      fileObject
+    );
+    console.log("FILE:", response);
   };
 
   return (
