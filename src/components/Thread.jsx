@@ -42,13 +42,12 @@ export const Thread = ({ thread, setThreads }) => {
     setLoading(false);
   };
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    database.deleteDocument(DB_ID, COLLECTION_ID, thread.$id);
-    console.log("Thread was deleted");
+  const handleDelete = async () => {
     setThreads((prevState) =>
       prevState.filter((thread) => thread.$id !== thread.id)
     );
+    database.deleteDocument(DB_ID, COLLECTION_ID, thread.$id);
+    console.log("Thread was deleted");
   };
 
   if (loading) return;
