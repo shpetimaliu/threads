@@ -1,14 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
-import { Functions } from "appwrite";
-import {
-  MoreHorizontal,
-  Heart,
-  Repeat,
-  MessageCircle,
-  Send,
-  Trash2,
-} from "react-feather";
+import { Heart, Repeat, MessageCircle, Send, Trash2 } from "react-feather";
 import {
   COLLECTION_ID,
   DB_ID,
@@ -44,7 +36,7 @@ export const Thread = ({ thread, setThreads }) => {
 
   const handleDelete = async () => {
     setThreads((prevState) =>
-      prevState.filter((thread) => thread.$id !== thread.id)
+      prevState.filter((item) => item.$id !== thread.$id)
     );
     database.deleteDocument(DB_ID, COLLECTION_ID, thread.$id);
     console.log("Thread was deleted");
