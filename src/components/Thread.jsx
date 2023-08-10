@@ -20,7 +20,7 @@ import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 TimeAgo.addDefaultLocale(en);
 
-export const Thread = ({ thread }) => {
+export const Thread = ({ thread, setThreads }) => {
   const [loading, setLoading] = useState(true);
   const [owner, setOwner] = useState(null);
 
@@ -42,9 +42,13 @@ export const Thread = ({ thread }) => {
     setLoading(false);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     database.deleteDocument(DB_ID, COLLECTION_ID, thread.$id);
     console.log("Thread was deleted");
+    setThreads((prevState) =>
+      prevState.filter((thread) => thread.$id !== thread.id)
+    );
   };
 
   if (loading) return;
@@ -70,8 +74,8 @@ export const Thread = ({ thread }) => {
           </div>
         </div>
         {/* Body */}
-        <div className="py-2">
-          <span>{thread.body}</span>
+        <div className="py-2" style={{ whiteSpace: "pre-wrap" }}>
+          {thread.body}
           <span>
             {thread.image && (
               <img
