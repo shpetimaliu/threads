@@ -7,8 +7,14 @@ import {
   Repeat,
   MessageCircle,
   Send,
+  Trash2,
 } from "react-feather";
-import { functions } from "../../appWriteConfig";
+import {
+  COLLECTION_ID,
+  DB_ID,
+  functions,
+  database,
+} from "../../appWriteConfig";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
@@ -36,6 +42,11 @@ export const Thread = ({ thread }) => {
     setLoading(false);
   };
 
+  const handleDelete = async () => {
+    database.deleteDocument(DB_ID, COLLECTION_ID, thread.$id);
+    console.log("Thread was deleted");
+  };
+
   if (loading) return;
 
   return (
@@ -48,14 +59,14 @@ export const Thread = ({ thread }) => {
       <div className="w-full px-2 pb-4 border-b border-[rgba(97,97,97,1)]">
         <div className="flex justify-between gap-2">
           <strong>{owner.name}</strong>
-          <div className="flex justify-between gap-2">
+          <div className="flex justify-between gap-2 items-center cursor-pointer">
             <p className="text-[rgba(97,97,97,1)]">
               <ReactTimeAgo
                 date={new Date(thread.$createdAt).getTime()}
                 locale="en-US"
               />
             </p>
-            <MoreHorizontal />
+            <Trash2 onClick={handleDelete} size={14} />
           </div>
         </div>
         {/* Body */}
@@ -64,7 +75,7 @@ export const Thread = ({ thread }) => {
           <span>
             {thread.image && (
               <img
-                className="object-cover border-[rgba(49, 49, 49, 1)] rounded-md"
+                className="object-cover border border-[rgba(49, 49, 49, 1)] rounded-md"
                 src={thread.image}
               />
             )}
@@ -79,7 +90,7 @@ export const Thread = ({ thread }) => {
         <div className="flex gap-3">
           <p className="text-[rgba(97,97,97,1)]">Replies 3</p>
           <p className="text-[rgba(97,97,97,1)]"> • </p>
-          <p className="text-[rgba(97,97,97,1)]">23 Likes</p>
+          <p className="text-[rgba(97,97,97,1)]">{thread.likes} Likes</p>
         </div>
       </div>
     </div>
