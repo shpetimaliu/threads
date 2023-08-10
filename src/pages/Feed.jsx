@@ -4,10 +4,10 @@ import { Thread } from "../components/Thread";
 import { Image } from "react-feather";
 import client, {
   database,
+  storage,
   DB_ID,
   COLLECTION_ID,
   BUCKET_IMAGE_ID,
-  storage,
 } from "../../appWriteConfig";
 import { Query, ID } from "appwrite";
 
@@ -48,6 +48,7 @@ const Feed = () => {
     console.log("RESPONSE @2:", response);
     setThreads((prevState) => [response, ...prevState]);
     setBody("");
+    setThreadImg(null);
   };
 
   const handleClick = async (e) => {
@@ -67,7 +68,9 @@ const Feed = () => {
       ID.unique(),
       fileObject
     );
-    console.log("FILE:", response);
+
+    const imagePreview = storage.getFilePreview(BUCKET_IMAGE_ID, response.$id);
+    setThreadImg(imagePreview.href);
   };
 
   return (
@@ -84,6 +87,7 @@ const Feed = () => {
               setBody(e.target.value);
             }}
           ></textarea>
+          <img src={threadImg} />
 
           {/* Icon */}
           <input
