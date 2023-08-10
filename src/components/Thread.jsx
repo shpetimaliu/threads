@@ -61,6 +61,7 @@ export const Thread = ({ thread }) => {
         {/* Body */}
         <div className="py-2">
           <span>{thread.body}</span>
+          <span>{thread.image && <img src={thread.image} />}</span>
         </div>
         <div className="flex gap-2 py-2">
           <Heart size={22} />
