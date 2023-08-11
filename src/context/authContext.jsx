@@ -4,6 +4,11 @@ const authContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   const contextData = {};
 
   return (
