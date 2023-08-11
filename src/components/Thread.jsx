@@ -103,7 +103,7 @@ export const Thread = ({ thread, setThreads }) => {
           </span>
         </div>
         <div className="flex gap-2 py-2">
-          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
             <Heart
               onClick={toggleLike}
               size={22}
@@ -114,13 +114,13 @@ export const Thread = ({ thread, setThreads }) => {
               }
             />
           </div>
-          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[RGBA(0,255,255,0.49)] hover:backdrop-blur-3xl">
             <MessageCircle size={22} />
           </div>
-          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
             <Repeat size={22} />
           </div>
-          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
             <Send size={22} />
           </div>
         </div>
