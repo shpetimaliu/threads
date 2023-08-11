@@ -1,23 +1,48 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 const Login = () => {
   const loginForm = useRef(null);
 
+  const { loginUser } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = loginForm.current.email.value;
+    const password = loginForm.current.email.value;
+
+    loginUser({ email, password });
+  };
+
   return (
-    <div>
-      <form ref={loginForm}>
-        <div>
+    <div className="container mx-auto max-w-[500px] rounded-md border border-[rgba(49, 49, 50, 0.5)] p-4">
+      <form onSubmit={handleSubmit} ref={loginForm}>
+        <div className="py-2">
           <label>Email:</label>
-          <input type="email" name="email" />
+          <input
+            required
+            type="email"
+            name="email"
+            className="w-full p-2 rounded-md"
+          />
         </div>
 
-        <div>
+        <div className="py-2">
           <label>Password:</label>
-          <input type="password" name="password" />
+          <input
+            required
+            type="password"
+            name="password"
+            className="w-full p-2 rounded-md"
+          />
         </div>
-        <div>
-          <input type="submit" name="Login" />
+        <div className="py-2">
+          <input
+            type="submit"
+            name="Login"
+            className="bg-white cursor-pointer text-black py-2 text-sm px-4 border border-black rounded"
+          />
         </div>
       </form>
       <p>
