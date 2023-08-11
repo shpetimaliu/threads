@@ -15,6 +15,8 @@ TimeAgo.addDefaultLocale(en);
 export const Thread = ({ thread, setThreads }) => {
   const [loading, setLoading] = useState(true);
   const [owner, setOwner] = useState(null);
+  const [threadInstance, setThreadInstance] = useState(thread);
+  const currentUserId = "64ce80a727511035504e";
 
   useEffect(() => {
     getUserInformation();
@@ -42,7 +44,29 @@ export const Thread = ({ thread, setThreads }) => {
     console.log("Thread was deleted");
   };
 
-  const toggleLike = async () => {};
+  const toggleLike = async () => {
+    const users_who_liked = thread.users_who_liked;
+
+    if (users_who_liked.includes(currentUserId)) {
+      const index = users_who_liked.indexOf(currentUserId);
+      users_who_liked.splice(index, 1);
+    } else {
+      users_who_liked.push(currentUserId);
+    }
+
+    const payload = {
+      users_who_liked: users_who_liked,
+      likes: users_who_liked.length,
+    };
+
+    const response = await database.updateDocument(
+      DB_ID,
+      COLLECTION_ID,
+      thread.$id,
+      payload
+    );
+    setThreadInstance(response);
+  };
 
   if (loading) return;
 
@@ -79,15 +103,34 @@ export const Thread = ({ thread, setThreads }) => {
           </span>
         </div>
         <div className="flex gap-2 py-2">
-          <Heart size={22} />
-          <MessageCircle size={22} />
-          <Repeat size={22} />
-          <Send size={22} />
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+            <Heart
+              onClick={toggleLike}
+              size={22}
+              color={
+                threadInstance.users_who_liked.includes(currentUserId)
+                  ? "#ff0000"
+                  : "#fff"
+              }
+            />
+          </div>
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+            <MessageCircle size={22} />
+          </div>
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+            <Repeat size={22} />
+          </div>
+          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)]">
+            <Send size={22} />
+          </div>
         </div>
+
         <div className="flex gap-3">
           <p className="text-[rgba(97,97,97,1)]">Replies 3</p>
           <p className="text-[rgba(97,97,97,1)]"> • </p>
-          <p className="text-[rgba(97,97,97,1)]">{thread.likes} Likes</p>
+          <p className="text-[rgba(97,97,97,1)]">
+            {threadInstance.likes} Likes
+          </p>
         </div>
       </div>
     </div>
