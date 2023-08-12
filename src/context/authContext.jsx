@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
         userInfo.email,
         userInfo.password
       );
+      console.log("response:", response);
     } catch (err) {
       console.log(err);
     }

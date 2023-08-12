@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = loginForm.current.email.value;
-    const password = loginForm.current.email.value;
+    const password = loginForm.current.password.value;
 
     loginUser({ email, password });
   };
