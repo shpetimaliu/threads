@@ -38,9 +38,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logoutUser = async () => {
+    account.deleteSession("current");
+    setUser(null);
+    navigate("/login");
+  };
+
   const contextData = {
     user,
     loginUser,
+    logoutUser,
   };
 
   return (
