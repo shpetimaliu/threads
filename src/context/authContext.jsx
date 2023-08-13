@@ -11,8 +11,18 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(false);
+    getUserOnLoad();
   }, []);
+
+  const getUserOnLoad = async () => {
+    try {
+      let accountDetails = await account.get();
+      setUser(accountDetails);
+    } catch (err) {
+      console.log(err);
+    }
+    setLoading(false);
+  };
 
   const loginUser = async (userInfo) => {
     try {
@@ -29,6 +39,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const contextData = {
+    user,
     loginUser,
   };
 
