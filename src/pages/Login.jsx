@@ -1,11 +1,19 @@
-import React, { useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 const Login = () => {
   const loginForm = useRef(null);
 
-  const { loginUser } = useAuth();
+  const { loginUser, user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigator("/");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
