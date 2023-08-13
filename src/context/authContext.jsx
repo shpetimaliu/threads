@@ -1,10 +1,14 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router";
 import { account } from "../../appWriteConfig";
 
 const authContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(false);
@@ -16,7 +20,9 @@ export const AuthProvider = ({ children }) => {
         userInfo.email,
         userInfo.password
       );
-      console.log("response:", response);
+      const accountDetails = await account.get();
+      setUser(accountDetails);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
