@@ -1,6 +1,11 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { account } from "../../appWriteConfig";
+import {
+  COLLECTION_ID_PROFILES,
+  DB_ID,
+  account,
+  database,
+} from "../../appWriteConfig";
 
 const authContext = createContext();
 
@@ -17,9 +22,20 @@ export const AuthProvider = ({ children }) => {
   const getUserOnLoad = async () => {
     try {
       let accountDetails = await account.get();
+
+      const profile = await database.getDocument(
+        DB_ID,
+        COLLECTION_ID_PROFILES,
+        accountDetails.$id
+      );
+      console.log("profili:", profile);
+
+      accountDetails["profile"] = profile;
+      console.log(accountDetails);
+
       setUser(accountDetails);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
     setLoading(false);
   };

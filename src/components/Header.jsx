@@ -5,11 +5,11 @@ import { useAuth } from "../context/authContext";
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
-  console.log(user);
   return (
     <div className="text-center">
       {user ? (
         <div>
+          <img src={user.profile.profile_pic} />
           <strong>Hello {user.name} </strong>
           <button
             onClick={logoutUser}
