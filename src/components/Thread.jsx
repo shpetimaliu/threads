@@ -1,22 +1,23 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
-import { Heart, Repeat, MessageCircle, Send, Trash2 } from "react-feather";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en.json";
+import React, { useEffect, useState } from "react";
+import { Heart, MessageCircle, Repeat, Send, Trash2 } from "react-feather";
+import ReactTimeAgo from "react-time-ago";
 import {
   COLLECTION_ID,
   DB_ID,
-  functions,
   database,
+  functions,
 } from "../../appWriteConfig";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en.json";
-import ReactTimeAgo from "react-time-ago";
+import { useAuth } from "../context/authContext";
 TimeAgo.addDefaultLocale(en);
 
 export const Thread = ({ thread, setThreads }) => {
   const [loading, setLoading] = useState(true);
   const [owner, setOwner] = useState(null);
   const [threadInstance, setThreadInstance] = useState(thread);
-  const currentUserId = "64ce80a727511035504e";
+  const { user } = useAuth();
 
   useEffect(() => {
     getUserInformation();
@@ -47,11 +48,11 @@ export const Thread = ({ thread, setThreads }) => {
   const toggleLike = async () => {
     const users_who_liked = thread.users_who_liked;
 
-    if (users_who_liked.includes(currentUserId)) {
-      const index = users_who_liked.indexOf(currentUserId);
+    if (users_who_liked.includes(user.$id)) {
+      const index = users_who_liked.indexOf(user.$id);
       users_who_liked.splice(index, 1);
     } else {
-      users_who_liked.push(currentUserId);
+      users_who_liked.push(user.$id);
     }
 
     const payload = {
@@ -108,7 +109,7 @@ export const Thread = ({ thread, setThreads }) => {
               onClick={toggleLike}
               size={22}
               color={
-                threadInstance.users_who_liked.includes(currentUserId)
+                threadInstance.users_who_liked.includes(user.$id)
                   ? "#ff0000"
                   : "#fff"
               }

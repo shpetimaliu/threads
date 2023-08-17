@@ -1,21 +1,24 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState, useRef } from "react";
-import { Thread } from "../components/Thread";
+import { ID, Query } from "appwrite";
+import React, { useEffect, useRef, useState } from "react";
 import { Image } from "react-feather";
-import client, {
+import {
+  BUCKET_IMAGE_ID,
+  COLLECTION_ID,
+  DB_ID,
   database,
   storage,
-  DB_ID,
-  COLLECTION_ID,
-  BUCKET_IMAGE_ID,
 } from "../../appWriteConfig";
-import { Query, ID } from "appwrite";
+import { Thread } from "../components/Thread";
+import { useAuth } from "../context/authContext";
 
 const Feed = () => {
   const [threads, setThreads] = useState([]);
 
   const [body, setBody] = useState("");
   const [threadImg, setThreadImg] = useState(null);
+
+  const { user } = useAuth();
 
   const fileRef = useRef(null);
 
@@ -34,7 +37,7 @@ const Feed = () => {
     e.preventDefault();
 
     const payload = {
-      owner_id: "64ce80a727511035504e",
+      owner_id: user.$id,
       body: body,
       image: threadImg,
     };
