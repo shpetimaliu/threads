@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 const Header = () => {
@@ -18,12 +19,13 @@ const Header = () => {
           </button>
         </div>
       ) : (
-        <button
+        <Link
+          to="/login"
           onClick={logoutUser}
           className="bg-white text-black py-2 px-4 border text-sm border-black rounded"
         >
           Login
-        </button>
+        </Link>
       )}
     </div>
   );
