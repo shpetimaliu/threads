@@ -1,10 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Feed from "./pages/feed";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Header from "./components/Header";
 import { AuthProvider } from "./context/authContext";
 import Login from "./pages/Login";
-import Header from "./components/Header";
+import Profile from "./pages/Profile";
+import Feed from "./pages/feed";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Feed />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </AuthProvider>
     </Router>
