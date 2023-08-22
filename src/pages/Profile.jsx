@@ -31,11 +31,11 @@ const Profile = () => {
   const getProfile = async () => {
     const data = await database.getDocument(DB_ID, COLLECTION_ID_PROFILES, id);
     console.log("data:", data);
-    // setUserProfile(data);
+    setUserProfile(data);
     setLoading(false);
   };
 
-  if (!loading) return;
+  if (loading) return;
 
   return (
     <div className="container mx-auto max-w-[600px]">
