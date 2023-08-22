@@ -17,7 +17,8 @@ const Profile = () => {
 
   useEffect(() => {
     getThreads();
-  });
+    getProfile();
+  }, []);
 
   const getThreads = async () => {
     const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
@@ -28,12 +29,9 @@ const Profile = () => {
   };
 
   const getProfile = async () => {
-    const profile = await database.getDocument(
-      DB_ID,
-      COLLECTION_ID_PROFILES,
-      id
-    );
-    setUserProfile(profile);
+    const data = await database.getDocument(DB_ID, COLLECTION_ID_PROFILES, id);
+    console.log("data:", data);
+    // setUserProfile(data);
     setLoading(false);
   };
 
