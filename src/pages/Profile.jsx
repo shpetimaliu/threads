@@ -6,7 +6,8 @@ const Profile = () => {
   const params = useParams();
 
   useEffect(() => {
-    getThreads();
+    console.log("Params:", params);
+    // getThreads();
   });
 
   //   const getThreads = async () => {

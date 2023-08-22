@@ -3,6 +3,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import React, { useEffect, useState } from "react";
 import { Heart, MessageCircle, Repeat, Send, Trash2 } from "react-feather";
+import { Link } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
 import {
   COLLECTION_ID,
@@ -73,10 +74,12 @@ export const Thread = ({ thread, setThreads }) => {
 
   return (
     <div className="flex p-4">
-      <img
-        src={owner.profile_pic}
-        className="w-14 h-14 rounded-full object-cover"
-      />
+      <Link to={`profile/${owner.$id}`}>
+        <img
+          src={owner.profile_pic}
+          className="w-14 h-14 rounded-full object-cover"
+        />
+      </Link>
       {/* Header of feed */}
       <div className="w-full px-2 pb-4 border-b border-[rgba(97,97,97,1)]">
         <div className="flex justify-between gap-2">
