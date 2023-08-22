@@ -39,9 +39,13 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto max-w-[600px]">
-      <div>
-        <div>
-          <h3 className="text-lg">@{userProfile.username}</h3>
+      <div className="flex justify-between">
+        <div className="py-4">
+          <strong className="text-3xl">{userProfile.username}</strong>
+          <div className="py-4">{userProfile.bio}</div>
+          <p className="text-[rgba(97,97,97,1)]">
+            {userProfile.follow_count} followers
+          </p>
         </div>
         <div>
           <img
