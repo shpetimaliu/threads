@@ -2,13 +2,14 @@ import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { COLLECTION_ID, DB_ID, database } from "../../appWriteConfig";
+import { Thread } from "../components/Thread";
 
 const Profile = () => {
   const [threads, setThreads] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    console.log("Params:", params);
+    console.log("Params:", id);
     getThreads();
   });
 
@@ -20,7 +21,15 @@ const Profile = () => {
     setThreads(response.documents);
   };
 
-  return <div>Profile</div>;
+  return (
+    <div>
+      <div>
+        {threads.map((thread) => (
+          <Thread key={thread.$id} thread={thread} setThreads={setThreads} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Profile;
