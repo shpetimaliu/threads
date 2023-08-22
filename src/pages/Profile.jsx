@@ -40,9 +40,14 @@ const Profile = () => {
   return (
     <div className="container mx-auto max-w-[600px]">
       <div>
-        <div></div>
         <div>
-          <img src={getProfile.profile_pic} />
+          <h3 className="text-lg">@{userProfile.username}</h3>
+        </div>
+        <div>
+          <img
+            className="w-24 h-24 rounded-full object-cover"
+            src={userProfile.profile_pic}
+          />
         </div>
       </div>
       <div className="p-4">
