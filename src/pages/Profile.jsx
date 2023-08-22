@@ -44,7 +44,7 @@ const Profile = () => {
       <div>
         <div></div>
         <div>
-          <img src={profile.profile_pic} />
+          <img src={getProfile.profile_pic} />
         </div>
       </div>
       <div className="p-4">
