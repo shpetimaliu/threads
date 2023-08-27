@@ -44,7 +44,7 @@ const Profile = () => {
           <strong className="text-3xl">{userProfile.username}</strong>
           <div className="py-4">{userProfile.bio}</div>
           <p className="text-[rgba(97,97,97,1)]">
-            {userProfile.follow_count} followers
+            {userProfile.follow_count} followers • {userProfile.link}
           </p>
         </div>
         <div>
