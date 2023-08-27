@@ -43,9 +43,15 @@ const Profile = () => {
         <div className="py-4">
           <strong className="text-3xl">{userProfile.username}</strong>
           <div className="py-4">{userProfile.bio}</div>
-          <p className="text-[rgba(97,97,97,1)]">
-            {userProfile.follow_count} followers • {userProfile.link}
-          </p>
+          <div className="flex gap-2">
+            <p className="text-[rgba(97,97,97,1)]">
+              {userProfile.follow_count} followers
+            </p>
+            <p className="text-[rgba(97,97,97,1)]">•</p>
+            <a href={userProfile.link} className="text-[rgba(97,97,97,1)]">
+              {userProfile.link}
+            </a>
+          </div>
         </div>
         <div>
           <img
