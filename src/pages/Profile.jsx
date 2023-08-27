@@ -47,10 +47,14 @@ const Profile = () => {
             <p className="text-[rgba(97,97,97,1)]">
               {userProfile.follow_count} followers
             </p>
-            <p className="text-[rgba(97,97,97,1)]">•</p>
-            <a href={userProfile.link} className="text-[rgba(97,97,97,1)]">
-              {userProfile.link}
-            </a>
+            {userProfile.link && (
+              <>
+                <p className="text-[rgba(97,97,97,1)]">•</p>
+                <a href={userProfile.link} className="text-[rgba(97,97,97,1)]">
+                  {userProfile.link}
+                </a>
+              </>
+            )}
           </div>
         </div>
         <div>
