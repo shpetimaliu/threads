@@ -68,6 +68,7 @@ const Profile = () => {
     };
 
     console.log("payload1:", payload);
+    console.log("payload2:", payload2);
 
     const response = await database.updateDocument(
       DB_ID,
@@ -82,6 +83,9 @@ const Profile = () => {
       userProfile.$id,
       payload2
     );
+
+    console.log("response:", response);
+    console.log("response2:", response2);
 
     console.log(">>>CLicked on follow");
   };
