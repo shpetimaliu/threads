@@ -8,8 +8,10 @@ import {
   database,
 } from "../../appWriteConfig";
 import { Thread } from "../components/Thread";
+import { useAuth } from "../context/authContext";
 
 const Profile = () => {
+  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [threads, setThreads] = useState([]);
   const [userProfile, setUserProfile] = useState(null);
@@ -36,6 +38,51 @@ const Profile = () => {
   };
 
   const toogleFollow = async () => {
+    const following = user.profile.following;
+    const followers = userProfile.followers;
+
+    // Following
+    if (following.includes(userProfile.$id)) {
+      const index = following.indexOf(userProfile.$id);
+      following.splice(index, 1);
+    } else {
+      following.push(userProfile.$id);
+    }
+
+    // Followers
+
+    if (followers.includes(user.$id)) {
+      const index = followers.indexOf(user.$id);
+      followers.splice(index, 1);
+    } else {
+      followers.push(user.$id);
+    }
+
+    const payload = {
+      following: following,
+    };
+
+    const payload2 = {
+      followers: followers,
+      follow_count: followers.length,
+    };
+
+    console.log("payload1:", payload);
+
+    const response = await database.updateDocument(
+      DB_ID,
+      COLLECTION_ID_PROFILES,
+      user.$id,
+      payload
+    );
+
+    const response2 = await database.updateDocument(
+      DB_ID,
+      COLLECTION_ID_PROFILES,
+      userProfile.$id,
+      payload2
+    );
+
     console.log(">>>CLicked on follow");
   };
 
