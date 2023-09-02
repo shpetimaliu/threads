@@ -28,24 +28,20 @@ const Feed = () => {
 
   const getThreads = async () => {
     const following = user.profile.following;
-    const feedPost = [];
+    let feedPosts = [];
 
     for (let i = 0; following.length > i; i++) {
       console.log("following[i].$id:", following[i].$id);
       let response = await database.listDocuments(DB_ID, COLLECTION_ID, [
         Query.orderDesc("$createdAt"),
-        Query.equal("owner_id", following[i].$id),
-        Query.limit(1),
+        Query.equal("owner_id", following[i]),
+        Query.limit(100),
       ]);
-      feedPost = [...feedPost, feedPost];
-      console.log("feedPost:", feedPost);
+      feedPosts = [...feedPosts, ...response.documents];
+      console.log("feedPost:", feedPosts);
     }
 
-    // const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
-    //   Query.orderDesc("$createdAt"),
-    //   Query.equal("owner_id", ID),
-    // ]);
-    // setThreads(response.documents);
+    setThreads(feedPosts);
   };
 
   const handleThreadSubmit = async (e) => {
