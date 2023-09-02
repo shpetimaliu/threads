@@ -84,6 +84,8 @@ const Profile = () => {
       payload2
     );
 
+    setUserProfile(response2);
+
     console.log("response:", response);
     console.log("response2:", response2);
 
@@ -115,17 +117,26 @@ const Profile = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between items-center">
           <img
             className="w-24 h-24 rounded-full object-cover"
             src={userProfile.profile_pic}
           />
-          <button
-            onClick={toogleFollow}
-            className="bg-white text-black py-2 px-4 border text-sm border-black rounded-xl"
-          >
-            Follow
-          </button>
+          {user.profile.following.includes(userProfile.$id) ? (
+            <button
+              onClick={toogleFollow}
+              className="text-white py-2 px-4 border border-[#fff] text-sm border-black rounded-full"
+            >
+              Following
+            </button>
+          ) : (
+            <button
+              onClick={toogleFollow}
+              className="bg-white text-black py-2 px-4 border text-sm border-black rounded-full"
+            >
+              Follow
+            </button>
+          )}
         </div>
       </div>
       <div className="p-4">
