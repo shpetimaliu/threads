@@ -35,8 +35,10 @@ const Feed = () => {
       let response = await database.listDocuments(DB_ID, COLLECTION_ID, [
         Query.orderDesc("$createdAt"),
         Query.equal("owner_id", following[i].$id),
+        Query.limit(1),
       ]);
-      console.log("response:", response);
+      feedPost = [...feedPost, feedPost];
+      console.log("feedPost:", feedPost);
     }
 
     // const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
