@@ -35,6 +35,10 @@ const Profile = () => {
     setLoading(false);
   };
 
+  const toogleFollow = async () => {
+    console.log(">>>CLicked on follow");
+  };
+
   if (loading) return;
 
   return (
@@ -65,7 +69,10 @@ const Profile = () => {
             className="w-24 h-24 rounded-full object-cover"
             src={userProfile.profile_pic}
           />
-          <button className="bg-white text-black py-2 px-4 border text-sm border-black rounded-xl">
+          <button
+            onClick={toogleFollow}
+            className="bg-white text-black py-2 px-4 border text-sm border-black rounded-xl"
+          >
             Follow
           </button>
         </div>
