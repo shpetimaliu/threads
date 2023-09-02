@@ -39,9 +39,12 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto max-w-[600px]">
-      <div className="flex justify-between">
+      <div className="flex justify-between my-20">
         <div className="py-4">
-          <strong className="text-3xl">{userProfile.username}</strong>
+          <strong className="text-3xl">{userProfile.name}</strong>
+          <div className="text-xl">
+            <p>@{userProfile.username}</p>
+          </div>
           <div className="py-4">{userProfile.bio}</div>
           <div className="flex gap-2">
             <p className="text-[rgba(97,97,97,1)]">
@@ -57,11 +60,14 @@ const Profile = () => {
             )}
           </div>
         </div>
-        <div>
+        <div className="flex flex-col justify-between">
           <img
             className="w-24 h-24 rounded-full object-cover"
             src={userProfile.profile_pic}
           />
+          <button className="bg-white text-black py-2 px-4 border text-sm border-black rounded-xl">
+            Follow
+          </button>
         </div>
       </div>
       <div className="p-4">
