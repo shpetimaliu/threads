@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
 const Login = () => {

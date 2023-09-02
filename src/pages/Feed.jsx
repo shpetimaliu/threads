@@ -27,10 +27,23 @@ const Feed = () => {
   }, []);
 
   const getThreads = async () => {
-    const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
-      Query.orderDesc("$createdAt"),
-    ]);
-    setThreads(response.documents);
+    const following = user.profile.following;
+    const feedPost = [];
+
+    for (let i = 0; following.length > i; i++) {
+      console.log("following[i].$id:", following[i].$id);
+      let response = await database.listDocuments(DB_ID, COLLECTION_ID, [
+        Query.orderDesc("$createdAt"),
+        Query.equal("owner_id", following[i].$id),
+      ]);
+      console.log("response:", response);
+    }
+
+    // const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
+    //   Query.orderDesc("$createdAt"),
+    //   Query.equal("owner_id", ID),
+    // ]);
+    // setThreads(response.documents);
   };
 
   const handleThreadSubmit = async (e) => {

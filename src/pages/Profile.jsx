@@ -125,7 +125,7 @@ const Profile = () => {
           {user.profile.following.includes(userProfile.$id) ? (
             <button
               onClick={toogleFollow}
-              className="text-white py-2 px-4 border border-[#fff] text-sm border-black rounded-full"
+              className="text-white py-2 px-4 border border-[#fff] text-sm  rounded-full"
             >
               Following
             </button>
