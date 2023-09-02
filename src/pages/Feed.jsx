@@ -34,13 +34,12 @@ const Feed = () => {
       console.log("following[i].$id:", following[i].$id);
       let response = await database.listDocuments(DB_ID, COLLECTION_ID, [
         Query.orderDesc("$createdAt"),
-        Query.equal("owner_id", following[i]),
+        Query.equal("owner_id", user.$id),
         Query.limit(100),
       ]);
       feedPosts = [...feedPosts, ...response.documents];
       console.log("feedPost:", feedPosts);
     }
-
     setThreads(feedPosts);
   };
 
@@ -120,7 +119,7 @@ const Feed = () => {
               />
             </div>
             <input
-              className="bg-white cursor-pointer text-black py-2 text-sm px-4 border border-black rounded"
+              className="bg-white cursor-pointer text-black py-2 text-sm px-4 border border-black rounded-full"
               type="submit"
               value="Post"
             />

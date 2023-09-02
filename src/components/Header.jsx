@@ -6,14 +6,20 @@ import { useAuth } from "../context/authContext";
 const Header = () => {
   const { user, logoutUser } = useAuth();
   return (
-    <div>
+    <div className="flex items-center py-8 justify-between px-10">
+      <Link to={`/`}>
+        <strong className="text-4xl text-white">@</strong>
+      </Link>
       {user ? (
-        <div className="flex items-center justify-center gap-2 py-4">
-          <img
-            className="h-10 w-10 object-cover rounded-full"
-            src={user.profile.profile_pic}
-          />
-          <strong>Hello {user.name} </strong>
+        <div className="flex items-center justify-center gap-2">
+          <Link to={`/profile/${user.$id}`}>
+            <img
+              className="h-10 w-10 object-cover rounded-full"
+              src={user.profile.profile_pic}
+            />
+          </Link>
+          <strong>{user.name} </strong>
+
           <button
             onClick={logoutUser}
             className="bg-white text-black py-2 px-4 border text-sm border-black rounded"
