@@ -74,7 +74,7 @@ export const Thread = ({ thread, setThreads }) => {
 
   return (
     <div className="flex p-4">
-      <Link to={`profile/${owner.$id}`}>
+      <Link to={`profile/${owner.profile.username}`}>
         <img
           src={owner.profile_pic}
           className="w-14 h-14 rounded-full object-cover"

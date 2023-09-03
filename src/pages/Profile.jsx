@@ -15,23 +15,27 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [threads, setThreads] = useState([]);
   const [userProfile, setUserProfile] = useState(null);
-  const { id } = useParams();
+  const { username } = useParams();
 
   useEffect(() => {
-    getThreads();
     getProfile();
+    getThreads();
   }, []);
 
   const getThreads = async () => {
     const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
       Query.orderDesc("$createdAt"),
-      Query.equal("owner_id", id),
+      Query.equal("owner_id", userProfile.$id),
     ]);
     setThreads(response.documents);
   };
 
   const getProfile = async () => {
-    const data = await database.getDocument(DB_ID, COLLECTION_ID_PROFILES, id);
+    const data = await database.getDocument(
+      DB_ID,
+      COLLECTION_ID_PROFILES,
+      username
+    );
     console.log("data:", data);
     setUserProfile(data);
     setLoading(false);
