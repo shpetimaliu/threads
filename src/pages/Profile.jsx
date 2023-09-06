@@ -31,14 +31,15 @@ const Profile = () => {
   };
 
   const getProfile = async () => {
-    const data = await database.getDocument(
+    const data = await database.listDocuments(
       DB_ID,
       COLLECTION_ID_PROFILES,
-      username
+      Query.equal("username"),
+      Query.limit(1)
     );
     console.log("data:", data);
-    getThreads(data.$id);
-    setUserProfile(data);
+    // getThreads(data.$id);
+    // setUserProfile(data);
     setLoading(false);
   };
 
