@@ -126,7 +126,6 @@ const Feed = () => {
           </div>
         </form>
       </div>
-
       {threads.map((thread) => (
         <Thread key={thread.$id} thread={thread} setThreads={setThreads} />
       ))}

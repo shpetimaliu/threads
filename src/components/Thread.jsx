@@ -33,7 +33,8 @@ export const Thread = ({ thread, setThreads }) => {
       JSON.stringify(payload)
     );
     const userData = JSON.parse(response.response);
-    // console.log("Raporti:", userData);
+    userData["profile_pic"] = user.profile.profile_pic;
+    userData["username"] = user.profile.username;
     setOwner(userData);
     setLoading(false);
   };
@@ -74,7 +75,7 @@ export const Thread = ({ thread, setThreads }) => {
 
   return (
     <div className="flex p-4">
-      <Link to={`profile/${owner.username}`}>
+      <Link to={`profile/@${owner.username}`}>
         <img
           src={owner.profile_pic}
           className="w-14 h-14 rounded-full object-cover"
