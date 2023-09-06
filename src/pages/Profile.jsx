@@ -22,10 +22,10 @@ const Profile = () => {
     getThreads();
   }, []);
 
-  const getThreads = async () => {
+  const getThreads = async (owner_id) => {
     const response = await database.listDocuments(DB_ID, COLLECTION_ID, [
       Query.orderDesc("$createdAt"),
-      Query.equal("owner_id", userProfile.$id),
+      Query.equal("owner_id", owner_id),
     ]);
     setThreads(response.documents);
   };
@@ -37,6 +37,7 @@ const Profile = () => {
       username
     );
     console.log("data:", data);
+    getThreads(data.$id);
     setUserProfile(data);
     setLoading(false);
   };
