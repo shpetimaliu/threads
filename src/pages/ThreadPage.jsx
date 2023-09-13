@@ -1,4 +1,4 @@
-import { ID } from "appwrite";
+import { ID, Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -7,6 +7,7 @@ import {
   DB_ID,
   database,
 } from "../../appWriteConfig";
+import Comment from "../components/Comment";
 import { Thread } from "../components/Thread";
 import { useAuth } from "../context/authContext";
 
@@ -15,11 +16,12 @@ function ThreadPage() {
   const [loading, setLoading] = useState(true);
   const [thread, setThread] = useState(null);
   const [commentBody, setCommentBody] = useState("");
-
+  const [comments, setComments] = useState([]);
   const { user } = useAuth();
 
   useEffect(() => {
     getThreads();
+    getComments();
   }, []);
 
   const getThreads = async () => {
@@ -49,6 +51,15 @@ function ThreadPage() {
     // setThreadImg(null);
   };
 
+  const getComments = async () => {
+    const response = await database.listDocuments(
+      DB_ID,
+      COLLECTION_ID_COMMENTS,
+      [Query.orderDesc("$createdAt"), Query.equal("thread_id", thread.$id)]
+    );
+    console.log("response per comment:", response.documents);
+  };
+
   if (!thread) return;
 
   return (
@@ -76,6 +87,12 @@ function ThreadPage() {
             />
           </div>
         </form>
+      </div>
+
+      <div>
+        {comments.map((comment) => (
+          <Comment key={comment.$id} comment={comment} />
+        ))}
       </div>
     </>
   );
