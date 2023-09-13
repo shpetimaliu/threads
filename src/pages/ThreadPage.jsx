@@ -79,7 +79,9 @@ function ThreadPage() {
           ></textarea>
 
           <div className="flex justify-end items-center border-y py-2 border-[rgba(49,49,49,1)]">
-            <div className="icon-container group"></div>
+            <span className="text-[#5b5b5b] flex p-4 w-full pb-4">
+              👋 This WebApp is cool, create by Shpetim Aliu
+            </span>
             <input
               className="bg-white cursor-pointer text-black py-2 text-sm px-4 border border-black rounded-full"
               type="submit"
