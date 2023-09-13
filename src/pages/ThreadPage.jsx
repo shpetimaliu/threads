@@ -4,7 +4,6 @@ import { COLLECTION_ID, DB_ID, database } from "../../appWriteConfig";
 import { Thread } from "../components/Thread";
 
 function ThreadPage() {
-  database();
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [thread, setThread] = useState(null);
