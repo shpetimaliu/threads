@@ -15,4 +15,5 @@ export const account = new Account(client);
 export const storage = new Storage(client);
 export const database = new Databases(client);
 export const functions = new Functions(client);
+
 export default client;

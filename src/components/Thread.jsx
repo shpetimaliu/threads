@@ -119,9 +119,11 @@ export const Thread = ({ thread, setThreads }) => {
               }
             />
           </div>
-          <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[RGBA(0,255,255,0.49)] hover:backdrop-blur-3xl">
-            <MessageCircle size={22} />
-          </div>
+          <Link to={`/thread/${thread.$id}`}>
+            <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
+              <MessageCircle size={22} />
+            </div>
+          </Link>
           <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
             <Repeat size={22} />
           </div>
