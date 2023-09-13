@@ -1,6 +1,7 @@
 import { Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import {
   COLLECTION_ID,
   COLLECTION_ID_PROFILES,
@@ -29,14 +30,14 @@ const Profile = () => {
   };
 
   const getProfile = async () => {
-    // const data = await database.listDocuments(DB_ID, COLLECTION_ID_PROFILES, [
-    //   Query.equal("username", username),
-    //   Query.limit(1),
-    // ]);
-    // console.log("data:", data);
-    // getThreads(data.$id);
-    // setUserProfile(data);
-    // setLoading(false);
+    const data = await database.listDocuments(DB_ID, COLLECTION_ID_PROFILES, [
+      Query.equal("username", username),
+      Query.limit(1),
+    ]);
+    console.log("data:", data.documents[0]);
+    getThreads(data.documents[0].$id);
+    setUserProfile(data.documents[0]);
+    setLoading(false);
   };
 
   const toogleFollow = async () => {
