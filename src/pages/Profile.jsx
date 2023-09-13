@@ -16,7 +16,6 @@ const Profile = () => {
   const [threads, setThreads] = useState([]);
   const [userProfile, setUserProfile] = useState(null);
   const { username } = useParams();
-
   useEffect(() => {
     getProfile();
   }, []);
@@ -30,15 +29,14 @@ const Profile = () => {
   };
 
   const getProfile = async () => {
-    const data = await database.listDocuments(DB_ID, COLLECTION_ID_PROFILES, [
-      Query.equal("username"),
-      Query.limit(1),
-    ]);
-    console.log("data:", data);
-    getThreads();
+    // const data = await database.listDocuments(DB_ID, COLLECTION_ID_PROFILES, [
+    //   Query.equal("username", username),
+    //   Query.limit(1),
+    // ]);
+    // console.log("data:", data);
     // getThreads(data.$id);
-    setUserProfile(data);
-    setLoading(false);
+    // setUserProfile(data);
+    // setLoading(false);
   };
 
   const toogleFollow = async () => {
@@ -104,7 +102,7 @@ const Profile = () => {
         <div className="py-4">
           <strong className="text-3xl">{userProfile.name}</strong>
           <div className="text-xl">
-            <p>@{userProfile.username}</p>
+            <p>{userProfile.username}</p>
           </div>
           <div className="py-4">{userProfile.bio}</div>
           <div className="flex gap-2">
