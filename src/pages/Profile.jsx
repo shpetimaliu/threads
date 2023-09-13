@@ -19,7 +19,6 @@ const Profile = () => {
 
   useEffect(() => {
     getProfile();
-    getThreads();
   }, []);
 
   const getThreads = async (owner_id) => {
@@ -36,8 +35,9 @@ const Profile = () => {
       Query.limit(1),
     ]);
     console.log("data:", data);
+    getThreads();
     // getThreads(data.$id);
-    // setUserProfile(data);
+    setUserProfile(data);
     setLoading(false);
   };
 
