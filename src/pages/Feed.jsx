@@ -87,7 +87,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="container mx-auto max-w-[600px]">
+    <>
       <div className="p-4">
         <form onSubmit={handleThreadSubmit}>
           <textarea
@@ -129,7 +129,7 @@ const Feed = () => {
       {threads.map((thread) => (
         <Thread key={thread.$id} thread={thread} setThreads={setThreads} />
       ))}
-    </div>
+    </>
   );
 };
 

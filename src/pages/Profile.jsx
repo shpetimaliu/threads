@@ -98,7 +98,7 @@ const Profile = () => {
   if (loading) return;
 
   return (
-    <div className="container mx-auto max-w-[600px]">
+    <>
       <div className="flex justify-between my-20">
         <div className="py-4">
           <strong className="text-3xl">{userProfile.name}</strong>
@@ -147,7 +147,7 @@ const Profile = () => {
           <Thread key={thread.$id} thread={thread} setThreads={setThreads} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

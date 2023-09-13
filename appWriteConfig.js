@@ -8,6 +8,7 @@ export const DB_ID = import.meta.env.VITE_DB_ID;
 export const BUCKET_IMAGE_ID = import.meta.env.VITE_BUCKETS_IMAGE_ID;
 export const COLLECTION_ID = import.meta.env.VITE_COLLECTION_ID;
 export const COLLECTION_ID_PROFILES = "64dd7ec370a9eba9dd44";
+export const COLLECTION_ID_COMMENTS = "6501e99f61a0d80ecefb";
 
 client.setEndpoint(VITE_ENDPOINT).setProject(PROJECT_ID);
 

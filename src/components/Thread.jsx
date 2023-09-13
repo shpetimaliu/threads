@@ -96,17 +96,19 @@ export const Thread = ({ thread, setThreads }) => {
           </div>
         </div>
         {/* Body */}
-        <div className="py-2" style={{ whiteSpace: "pre-wrap" }}>
-          {thread.body}
-          <span>
-            {thread.image && (
-              <img
-                className="object-cover border border-[rgba(49, 49, 49, 1)] rounded-md"
-                src={thread.image}
-              />
-            )}
-          </span>
-        </div>
+        <Link to={`/thread/${thread.$id}`}>
+          <div className="py-2 text-white" style={{ whiteSpace: "pre-wrap" }}>
+            {thread.body}
+            <span>
+              {thread.image && (
+                <img
+                  className="object-cover border border-[rgba(49, 49, 49, 1)] rounded-md"
+                  src={thread.image}
+                />
+              )}
+            </span>
+          </div>
+        </Link>
         <div className="flex gap-2 py-2">
           <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
             <Heart
