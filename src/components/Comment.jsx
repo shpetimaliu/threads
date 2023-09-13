@@ -1,4 +1,8 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import ReactTimeAgo from "react-time-ago";
+
+// TimeAgo.addDefaultLocale(en);
 
 function Comment({ comment }) {
   useEffect(() => {}, []);
@@ -64,7 +68,7 @@ function Comment({ comment }) {
               }
             />
           </div> */}
-          <Link to={`/thread/${comment.$id}`}>
+          {/* <Link to={`/thread/${comment.$id}`}>
             <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
               <MessageCircle size={22} />
             </div>
@@ -74,7 +78,7 @@ function Comment({ comment }) {
           </div>
           <div className="group flex items-center p-1 rounded-full cursor-pointer hover:hover:bg-[rgba(49,49,49,1)] hover:backdrop-blur-3xl">
             <Send size={22} />
-          </div>
+          </div>*/}
         </div>
 
         <div className="flex gap-3">

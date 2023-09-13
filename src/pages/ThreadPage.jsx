@@ -48,16 +48,16 @@ function ThreadPage() {
 
     console.log("RESPONSE @2:", response);
     setCommentBody("");
-    // setThreadImg(null);
+    setComments((prevState) => [response, ...prevState]);
   };
 
   const getComments = async () => {
     const response = await database.listDocuments(
       DB_ID,
       COLLECTION_ID_COMMENTS,
-      [Query.orderDesc("$createdAt"), Query.equal("thread_id", thread.$id)]
+      [Query.orderDesc("$createdAt"), Query.equal("thread_id", id)]
     );
-    console.log("response per comment:", response.documents);
+    setComments(response.documents);
   };
 
   if (!thread) return;
