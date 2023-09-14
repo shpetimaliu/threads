@@ -37,7 +37,6 @@ function ThreadPage() {
       owner_id: user.$id,
       thread_id: id,
       body: commentBody,
-      // image: commentImg,
     };
     const response = await database.createDocument(
       DB_ID,
@@ -46,7 +45,6 @@ function ThreadPage() {
       payload
     );
 
-    console.log("RESPONSE @2:", response);
     setCommentBody("");
     setComments((prevState) => [response, ...prevState]);
   };

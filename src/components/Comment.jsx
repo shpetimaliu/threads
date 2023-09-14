@@ -96,6 +96,7 @@ function Comment({ comment }) {
             <Heart
               onClick={toggleLike}
               size={22}
+              className="cursor-pointer"
               color={
                 commentInstance?.users_who_liked.includes(user.$id)
                   ? "#ff0000"

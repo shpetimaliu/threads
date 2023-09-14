@@ -34,7 +34,7 @@ const Profile = () => {
       Query.equal("username", username),
       Query.limit(1),
     ]);
-    console.log("data:", data.documents[0]);
+
     getThreads(data.documents[0].$id);
     setUserProfile(data.documents[0]);
     setLoading(false);
@@ -70,9 +70,6 @@ const Profile = () => {
       follow_count: followers.length,
     };
 
-    console.log("payload1:", payload);
-    console.log("payload2:", payload2);
-
     const response = await database.updateDocument(
       DB_ID,
       COLLECTION_ID_PROFILES,
@@ -88,11 +85,6 @@ const Profile = () => {
     );
 
     setUserProfile(response2);
-
-    console.log("response:", response);
-    console.log("response2:", response2);
-
-    console.log(">>>CLicked on follow");
   };
 
   if (loading) return;

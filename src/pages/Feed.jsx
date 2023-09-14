@@ -31,14 +31,12 @@ const Feed = () => {
     let feedPosts = [];
 
     for (let i = 0; following.length > i; i++) {
-      console.log("following[i].$id:", following[i].$id);
       let response = await database.listDocuments(DB_ID, COLLECTION_ID, [
         Query.orderDesc("$createdAt"),
         Query.equal("owner_id", user.$id),
         Query.limit(100),
       ]);
       feedPosts = [...feedPosts, ...response.documents];
-      console.log("feedPost:", feedPosts);
     }
     setThreads(feedPosts);
   };
@@ -58,7 +56,6 @@ const Feed = () => {
       payload
     );
 
-    console.log("RESPONSE @2:", response);
     setThreads((prevState) => [response, ...prevState]);
     setBody("");
     setThreadImg(null);
@@ -70,8 +67,6 @@ const Feed = () => {
 
   const handleFileChange = async (e) => {
     const fileObject = e.target.files && e.target.files[0];
-    console.log(fileObject);
-
     if (!fileObject) {
       return;
     }

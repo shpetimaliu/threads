@@ -44,7 +44,6 @@ export const Thread = ({ thread, setThreads }) => {
       prevState.filter((item) => item.$id !== thread.$id)
     );
     database.deleteDocument(DB_ID, COLLECTION_ID, thread.$id);
-    console.log("Thread was deleted");
   };
 
   const toggleLike = async () => {

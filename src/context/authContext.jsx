@@ -28,10 +28,8 @@ export const AuthProvider = ({ children }) => {
         COLLECTION_ID_PROFILES,
         accountDetails.$id
       );
-      console.log("profili:", profile);
 
       accountDetails["profile"] = profile;
-      console.log(accountDetails);
 
       setUser(accountDetails);
     } catch (error) {
